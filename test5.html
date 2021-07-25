@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>模仿点击事件</title>
+  </head>
+  <body>
+    <button id="a">A</button>
+    <button id="b">B</button>
+    <script>
+      var a = document.getElementById("a");
+      var b = document.getElementById("b");
+      a.addEventListener("click", function(e) {
+        console.log("this is a");
+        console.log(e.eventType);
+      });
+
+      var event1 = document.createEvent("HTMLEvents");
+      event1.initEvent("click", true, true);
+      event1.eventType = "message"; // 可选择
+      b.addEventListener("click", function(e) {
+        a.dispatchEvent(event1);
+      });
+    </script>
+  </body>
+</html>

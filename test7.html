@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+      }
+      header {
+        line-height: 40px;
+        background: pink;
+      }
+      footer {
+        background: lightBlue;
+        height: 80px;
+      }
+      .main {
+        width: 100%;
+        height: calc(100% - 120px);
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+    </style>
+  </head>
+  <body>
+    <header>Index</header>
+    <div class="main">
+      <p>top</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>11111</p>
+      <p>bottom</p>
+    </div>
+    <footer></footer>
+    <script>
+      function handleScroll() {
+        var ios = navigator.userAgent.indexOf("iPhone");
+        // 判断是否为ios
+        if (ios !== -1) {
+          // ios下运行
+          var divEl = document.querySelector(".mian");
+          // 你需要滑动的dom元素
+          iosTrouchFn(divEl);
+        }
+
+        function iosTrouchFn(el) {
+          // el需要滑动的元素
+          el.addEventListener("touchmove", function(e) {
+            if (el.offsetHeight < el.scrollHeight) {
+              e.isSCROLL = true;
+            }
+          });
+          document.body.addEventListener(
+            "touchmove",
+            function(e) {
+              if (!e.isSCROLL) {
+                e.preventDefault(); // 阻止默认事件(上下滑动)
+              } else {
+                // 需要滑动的区域
+                var top = el.scrollTop;
+                // 对象最顶端和窗口最顶端之间的距离
+                var scrollH = el.scrollHeight;
+                // 含滚动内容的元素大小
+                var offsetH = el.offsetHeight; //元素网页可见区域高
+                var cScroll = top + offsetH; // 当前滚动的距离
+                // 被滑动到最上方和最下方的时候
+                if (top === 0) {
+                  // 滑动到了顶部
+                  top = 1; // 0～1之间的小数会被当成0
+                } else if (cScroll === scrollH) {
+                  // 滑动到了底部
+                  el.scrollTop = top - 1;
+                }
+              }
+            },
+            {
+              passive: false
+            }
+          ); // passive防止阻止默认事件不生效
+        }
+      }
+      handleScroll();
+    </script>
+  </body>
+</html>

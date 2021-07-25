@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="color" />
+    <script>
+      var list = [
+        {
+          label: "test1",
+          value: 1,
+          obj: {
+            name: "test1",
+            age: 11
+          }
+        },
+        {
+          label: "test2",
+          value: 2,
+          obj: {
+            name: "test2",
+            age: 22
+          }
+        }
+      ];
+      list.forEach(o =>
+        Object.defineProperties(o, {
+          label: {
+            writable: false
+          },
+          value: {
+            writable: false
+          },
+          obj: {
+            writable: false
+          }
+        })
+      );
+      var test = list.map(o => o.obj);
+      test[1].age = 23;
+      console.log(list);
+      console.log(test);
+    </script>
+  </body>
+</html>

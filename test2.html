@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta
+          name='viewport'
+          content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;'
+        />
+        <title>Video.js | HTML5 Video Player</title>
+        <style>*{margin: 0;padding: 0;}</style>
+        <script src="jsmpeg.min.js"></script>
+    </head>
+    
+    <body>
+      <canvas id = "canvas"></canvas>
+	<script>
+ 	 var player = new JSMpeg.Player('c.ts', {
+        canvas: canvas, 
+        progressive: true, //渐进加载,false的话则会先下载完再渲染
+        loop: true,
+        autoplay:true
+     });  
+  </script>
+    </body>
+</html>

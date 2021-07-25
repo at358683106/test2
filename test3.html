@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="/pako.min.js"></script>
+    <script charset="gb2312">
+        function unzip(b64Data){
+            var strData = atob(b64Data);
+            // Convert binary string to character-number array
+            var charData  = strData.split('').map(function(x){return x.charCodeAt(0);});
+            // Turn number array into byte-array
+            var binData   = new Uint8Array(charData);
+            // // unzip
+            var data = pako.inflate(binData);
+            // Convert gunzipped byteArray back to ascii string:
+            strData = String.fromCharCode.apply(null, new Uint16Array(data));
+            return decodeURIComponent(strData);
+        }
+        var str = `H4sIAAAAAAAAA21SwY7TMBD9F5+zKGma3bZXKhCCAxIVV2tIpoklx7Y8DqVaVYIbQoLdAyuttAJOcFlpxR/0a1rgL7CbpLRib573xvPmzcw5KwQZcHmF9nmlFbLJHCRhxPCNsUj0RM01m5yvIlaAA/9ip+PTUXZ2lg7jwSBLB4M0gIuaa1ug5aJgk5MkCoDRYhd2HyImdSnIiZw4OXANsUmSHaK5Lrw+S+I4ZYd4KJLEySGkoA6pm/Xtn7fvfHLQokoYI1TJ5+i5+EEcMScMh1o3ynUAoZzz3rLHor1/
+noPKUXKQUi+OGO+qk9t++bS9/v7rxwU7Yk07ONVIGTFtSy4Rwiz+w7FGW6LKl8eUBIfkeIFSvEa75E4ENd/BAoQLhvaAIO4qYQtuwLq94R11D9613Yrcxx91IejpCz/nf85mCHVPVlUgu9Mw7rGF5U61L/UIcYoOhHyp+y9AJEo161tvwymWFsKWu1J5Yy0q12YlWTZK02Q8HvrCzatn/bYf7u4ibAQl+Nk1VHHCXCt/F/HKn2Z7OD6hpjKs6ern9uPd7/Xnzc3X7fvLzYdvbPUXaXxaqekCAAA=
+`;
+        str = unzip(str);
+        console.log(str);
+    </script>
+</body>
+</html>

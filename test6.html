@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li type="test">1111</li>
+        <li><span>2222</span></li>
+        <li><p>3333</p></li>
+        <li>4444</li>
+        <li>5555</li>
+        <li>6666</li>
+        <li>7777</li>
+    </ul>
+    <script>
+        var box = document.querySelector('ul');
+        function fn(e){
+            var target = e.target;
+            while(target !== box ){
+                if(target.getAttribute('type') === 'test') return true;
+                target = target.parentNode;
+            }
+            return false;
+        }
+        box.addEventListener('click',function(e){
+            fn(e)?console.log('ok'):console.log('no');
+        })
+    </script>
+</body>
+</html>

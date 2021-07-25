@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <input type="text" placeholder="请输入" />
+    <script src="./base64.min.js"></script>
+    <script>
+      document.attachEvent("load", function() {
+          document.detachEvent("onreadystatechange", arguments.callee);
+          console.log(arguments.callee)
+      });
+
+      // 面试题
+      //"123"=>"100 + 20 + 3"
+      //"10086"=>"10000 + 80 + 6"
+
+      // 方式一
+      function fn(num) {
+        let s = "";
+        for (var i = 0; i < num; i++) {
+          s += "0";
+        }
+        return s;
+      }
+      function test(str) {
+        return str
+          .split("")
+          .reverse()
+          .map((item, len) => +(item + fn(len)))
+          .reverse()
+          .filter(item => +item)
+          .join(" + ");
+      }
+      console.log(test("10086"));
+
+      // 方式二
+      /**
+       * Array.from 生成一个数组
+       * Array.fill(val,start,end) 会把数组的某个元素替换成val，默认是全部替换
+       **/
+
+      test2 = str => {
+        return str
+          .split("")
+          .reverse()
+          .map(
+            (num, length) =>
+              num +
+              Array.from({ length })
+                .fill(0)
+                .join("")
+          )
+          .filter(val => +val)
+          .reverse()
+          .join(" + ");
+      };
+      console.log(test2("10086"));
+
+      var obj =
+        '{"steps":[{"sales":6,"rate":7,"startDate":"2019-04-10","endDate":"2019-04-11"}]}';
+      console.log(JSON.parse(obj));
+
+      var text = "cat,bat,sat,fat";
+      var pattern = /.at/;
+      var matches = text.match(pattern);
+      var searhes = text.search(/at/);
+      var result = text.replace(/(.at)/g, "word($1)");
+      var result1 = text.replace(/.at/g, "ond");
+      var result2 = text.replace(/at/g, "ond");
+      console.log(matches);
+      console.log(searhes);
+      console.log(result);
+      console.log(result1);
+      console.log(result2);
+    </script>
+  </body>
+</html>
